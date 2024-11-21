@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedTros.App", "GildedTros.App\GildedTros.App.csproj", "{37C9D9B5-867E-4905-926C-19ED64D89B89}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{D68EB52D-2DC4-4215-B141-9C5611D5F8BB}"
+	ProjectSection(SolutionItems) = preProject
+		..\GildedTrosRequirements.txt = ..\GildedTrosRequirements.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
