@@ -10,7 +10,7 @@ namespace GildedTros.App
     [UseReporter(typeof(DiffReporter))]
     public class ApprovalTest
     {
-        [Fact(Skip = "thirtyDays")]
+        [Fact]
         public void ThirtyDays()
         {
             var fakeoutput = new StringBuilder();

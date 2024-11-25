@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.IO.Abstractions;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.VisualBasic.FileIO;
 using FileSystem = System.IO.Abstractions.FileSystem;
 
 namespace GildedTros.App
@@ -14,8 +11,13 @@ namespace GildedTros.App
     {
         public static void Main()
         {
+            TestMain();
+        }
+
+        private static void TestMain()
+        {
             IFileSystem fileSystem = new FileSystem();
-            
+
             var configFile = "configuration.json";
             var configFileData = fileSystem.File.ReadAllText(configFile);
 
@@ -27,18 +29,10 @@ namespace GildedTros.App
                     new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
                 }
             };
-            
+
             var itemTypes = JsonSerializer.Deserialize<List<ItemType>>(configFileData, options)
-                ?? [];
-
-            foreach (var itemType in itemTypes)
-            {
-                Console.WriteLine(JsonSerializer.Serialize(itemType, options));
-            }
-        }
-
-        private static void TestMain()
-        {
+                            ?? [];
+            
             Console.WriteLine("OMGHAI!");
 
             var items = new List<Item>
@@ -57,11 +51,6 @@ namespace GildedTros.App
                 new() { Name = "Ugly Variable Names", SellIn = 3, Quality = 6 }
             };
 
-            var app = new GildedTros
-            {
-                Items = items
-            };
-
             for (var i = 0; i < 31; i++)
             {
                 Console.WriteLine("-------- day " + i + " --------");
@@ -72,7 +61,7 @@ namespace GildedTros.App
                 }
 
                 Console.WriteLine("");
-                app.UpdateQuality();
+                GildedService.UpdateQuality(items, itemTypes);
             }
         }
     }
